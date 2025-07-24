@@ -7,8 +7,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin:  ["https://iiti-so-c-frontend.vercel.app/"],
-    methods: ["GET", "POST"]
+    origin:  ["https://iiti-so-c-frontend.vercel.app"],
+    methods: ["GET", "POST"],
+     credentials: true,
   },
 });
 
@@ -24,6 +25,11 @@ io.on("connection", (socket) => {
  
   // ✅ NEW: Join meeting room
   socket.on("joinMeetingRoom", (meetingId) => {
+   const userId = socket.handshake.query.userId;
+  console.log("New client connected:", socket.id, "with userId:", userId);
+
+  if (userId) userSocketMap[userId] = socket.id;
+
     console.log(`User ${userId} joined meeting room ${meetingId}`);
     socket.join(meetingId);   // socket.io built-in
   });
