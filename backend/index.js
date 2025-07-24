@@ -14,7 +14,7 @@ import {app , server} from "./libs/socket.js"
 
 
 // Middlewares
-app.use(cors({ origin: 'https://iiti-so-c-frontend.vercel.app/', credentials: true }));
+app.use(cors({ origin: 'https://iiti-so-c-frontend.vercel.app', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", router);
