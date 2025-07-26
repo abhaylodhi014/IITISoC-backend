@@ -143,7 +143,7 @@ export const addMessage = async (req, res) => {
     await meeting.save();
  
    // emit socket event if needed
-   req.io?.to(meetingId).emit("newChatMessage", newMsg);
+  //  req.io?.to(meetingId).emit("newChatMessage", newMsg);
 
     res.json(newMsg);
   } catch (error) {
